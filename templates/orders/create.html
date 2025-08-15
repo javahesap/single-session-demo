@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Create Order{% endblock %}
+{% block content %}
+<h1>Create Order</h1>
+<form method="post">
+  <div class="mb-3">
+    <label class="form-label">Customer Name</label>
+    <input type="text" name="customer_name" class="form-control">
+  </div>
+  {% for i in range(3) %}
+  <div class="row mb-2">
+    <div class="col">
+      <select name="product_id" class="form-select">
+        <option value="">Select product</option>
+        {% for product in products %}
+        <option value="{{ product.id }}">{{ product.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col">
+      <input type="number" name="quantity" class="form-control" value="1" min="1">
+    </div>
+  </div>
+  {% endfor %}
+  <button class="btn btn-primary" type="submit">Save</button>
+</form>
+{% endblock %}
