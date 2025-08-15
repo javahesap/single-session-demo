@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h1>Categories</h1>
+  <a class="btn btn-primary" href="{{ url_for('categories.create') }}">New Category</a>
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr><th>Name</th><th>Description</th><th></th></tr>
+    </thead>
+    <tbody>
+    {% for category in categories %}
+      <tr>
+        <td>{{ category.name }}</td>
+        <td>{{ category.description }}</td>
+        <td>
+          <a class="btn btn-sm btn-secondary" href="{{ url_for('categories.edit', id=category.id) }}">Edit</a>
+          <form action="{{ url_for('categories.delete', id=category.id) }}" method="post" style="display:inline">
+            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
